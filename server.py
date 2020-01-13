@@ -1,6 +1,8 @@
+import json
 import os
 
 import eventlet
+import psycopg2
 import socketio
 
 
@@ -14,6 +16,15 @@ static_files = {
 
 sio = socketio.Server()
 app = socketio.WSGIApp(sio, static_files=static_files)
+
+# PostgreSQL
+if 'DATABASE_URL' in os.environ.keys():
+    db_url = os.environ['DATABASE_URL']
+else:
+    db_url = json.load(open('config.json'))['db_url']
+
+con = psycopg2.connect(db_url)
+cur = con.cursor()
 
 
 #*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -38,3 +49,6 @@ if __name__ == '__main__':
         port = 8000
 
     eventlet.wsgi.server(eventlet.listen(('', port)), app)
+
+    # Shutdown
+    con.close()
