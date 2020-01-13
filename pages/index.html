@@ -4,9 +4,61 @@
     <head>
         <title>lil'Amazons</title>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js" integrity="sha256-Dul4c09cdrWKXVtallPxF558lwxMwCC8dXJdZ0PVW54=" crossorigin="anonymous"></script>
         <script src='/js/client.js'></script>
     </head>
 
-    <body></body>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            padding: 5px;
+
+            font-family: Dosis;
+            font-size: 10pt;
+        }
+
+        a {
+            text-decoration: none;
+            color: royalblue;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        div#header {
+            background: linear-gradient(#D0D0D0, white);
+        }
+
+        div#div-register {
+            display: none;
+
+            margin-top:   20px;
+            margin-left:  20%;
+            margin-right: 20%;
+
+            background: #E8E8E8;
+            border: 1px #A0A0A0 solid;
+        }
+    </style>
+
+    <body>
+        <div id='header'>
+            <p>
+                <a href='/'>Home</a> |
+                <a href='#' id='link-register'>Register</a>
+            </p>
+        </div>
+
+        <div id='div-register'>
+            <p><b>Register</b></p>
+        </div>
+    </body>
 </html>
