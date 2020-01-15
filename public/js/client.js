@@ -8,6 +8,9 @@ $(() => {
         if (e.target.id == 'link-register') {
             $('#div-register').show();
         }
+        else if (e.target.id == 'link-login') {
+            $('#div-login').show();
+        }
     });
 
     $('#div-register').on('click', 'input', (e) => {
@@ -15,6 +18,15 @@ $(() => {
             socket.emit('registration', {
                 username: $('#register-username').val(),
                 password: $('#register-password').val()
+            })
+        }
+    });
+
+    $('#div-login').on('click', 'input', (e) => {
+        if (e.target.id == 'btn-login') {
+            socket.emit('login', {
+                username: $('#login-username').val(),
+                password: $('#login-password').val()
             })
         }
     });
@@ -29,5 +41,9 @@ $(() => {
 
     socket.on('registered', () => {
         $('#div-register').hide();
+    });
+
+    socket.on('no_such_user', () => {
+        alert('No such user.');
     });
 });

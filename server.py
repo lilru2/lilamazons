@@ -63,6 +63,20 @@ def registration(sid, details):
 
         sio.emit('registered', room=sid)
 
+@sio.on('login')
+def login(sid, details):
+    cur.execute(
+        'SELECT * FROM users WHERE username=%(username)s',
+        { 'username': details['username'] }
+    )
+    res = cur.fetchone()
+
+    if res: # User exists
+        print(f'Login from {res[0]}')
+
+    else:
+        sio.emit('no_such_user', room=sid)
+
 
 #*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #*                                                                         RUN
