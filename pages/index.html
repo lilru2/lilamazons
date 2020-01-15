@@ -2,9 +2,11 @@
 
 <html>
     <head>
+        <meta charset='UTF-8'>
+
         <title>lil'Amazons</title>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"   integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js" integrity="sha256-Dul4c09cdrWKXVtallPxF558lwxMwCC8dXJdZ0PVW54=" crossorigin="anonymous"></script>
         <script src='/js/client.js'></script>
     </head>
@@ -44,10 +46,7 @@
             margin-top:   20px;
             margin-left:  20%;
             margin-right: 20%;
-
-            padding-top:    10px;
-            padding-bottom: 10px;
-            padding-left:   10px;
+            padding:      10px;
 
             background: #F8F8F8;
             border-left: 1px #A0A0A0 dashed;
@@ -69,10 +68,10 @@
         <div id='div-register'>
             <p><b>Register</b></p>
 
-            <input type='text'     name='username' placeholder='Username'>
-            <input type='password' name='password' placeholder='Password'>
+            <input type='text'     id='register-username' name='username' placeholder='Username'>
+            <input type='password' id='register-password' name='password' placeholder='Password'>
 
-            <input type='button' value='Register'>
+            <input type='button' id='btn-register' value='Register'>
         </div>
     </body>
 </html>

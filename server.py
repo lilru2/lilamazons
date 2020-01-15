@@ -38,6 +38,31 @@ def connect(sid, env):
 def disconnect(sid):
     print(f'Disconnected: {sid}')
 
+@sio.on('registration')
+def registration(sid, details):
+    cur.execute(
+        'SELECT count(*) FROM users WHERE username=%(username)s',
+        { 'username': details['username'] }
+    )
+
+    if cur.fetchone()[0]: # Username is taken
+        sio.emit('username_taken', room=sid)
+
+    else:
+        # TODO: Actually use password hash rather than the plaintext password.
+        cur.execute("""
+            INSERT INTO users (username, password_hash)
+            VALUES (%(username)s, %(password_hash)s)
+            """,
+            {
+                'username':      details['username'],
+                'password_hash': details['password']
+            }
+        )
+        con.commit()
+
+        sio.emit('registered', room=sid)
+
 
 #*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #*                                                                         RUN
@@ -51,4 +76,5 @@ if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('', port)), app)
 
     # Shutdown
+    cur.close()
     con.close()
