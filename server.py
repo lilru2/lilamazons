@@ -29,15 +29,28 @@ cur = con.cursor()
 
 
 #*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#*                                                                  MANAGEMENT
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+users = {}
+
+
+#*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #*                                                                   SOCKET.IO
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 @sio.on('connect')
 def connect(sid, env):
     print(f'Connected: {sid}')
 
+    users[sid] = {
+        'connected': True,
+        'logged_in': False,
+        'username': None
+    }
+
 @sio.on('disconnect')
 def disconnect(sid):
     print(f'Disconnected: {sid}')
+    users[sid]['connected'] = False
 
 @sio.on('registration')
 def registration(sid, details):
@@ -74,6 +87,12 @@ def login(sid, details):
 
     if res: # User exists
         print(f'Login from {res[0]}')
+
+        # TODO: Disallow multiple logins?
+        users[sid]['logged_in'] = True
+        users[sid]['username'] = res[0]
+
+        sio.emit('logged_in', { 'username': res[0] }, room=sid)
 
     else:
         sio.emit('no_such_user', room=sid)
