@@ -60,5 +60,7 @@ $(() => {
 
         username = details.username;
         $('#logged-in-as').text(username);
+
+        $('#navbar').show();
     });
 });
