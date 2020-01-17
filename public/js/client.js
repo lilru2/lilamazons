@@ -6,9 +6,11 @@ $(() => {
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     $('#header').on('click', 'a', (e) => {
         if (e.target.id == 'link-register') {
+            $('#div-login').hide();
             $('#div-register').show();
         }
         else if (e.target.id == 'link-login') {
+            $('#div-register').hide();
             $('#div-login').show();
         }
     });

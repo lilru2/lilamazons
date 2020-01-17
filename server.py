@@ -11,6 +11,7 @@ import socketio
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 static_files = {
     '/': 'pages/index.html',
+    '/css/default.css': 'public/css/default.css',
     '/js/client.js': 'public/js/client.js'
 }
 

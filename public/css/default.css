@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Saira&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    padding: 5px;
+
+    font-family: Saira;
+    font-size: 9pt;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+div#header {
+    background: linear-gradient(#D0D0D0, white);
+    border-bottom: 1px #D0D0D0 solid;
+}
+
+div#header > p > a {
+    padding-left:  3px;
+    padding-right: 3px;
+
+    border: 1px #A0A0A0 solid;
+}
+
+div#header > p > a:hover {
+    text-decoration: none;
+    background: linear-gradient(white, #D0D0D0);
+}
+
+div#div-register, div#div-login {
+    display: none;
+    padding: 10px;
+
+    background: #F8F8F8;
+    border-bottom: 1px #D0D0D0 solid;
+}
+
+input {
+    margin-right: 5px;
+}
