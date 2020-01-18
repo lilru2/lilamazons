@@ -63,4 +63,18 @@ $(() => {
 
         $('#navbar').show();
     });
+
+
+    //*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    //*                                                                   GAME
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    const app = new PIXI.Application({
+        width:  0,
+        height: 0,
+        antialias: true,
+        transparent: true
+    });
+
+    app.renderer.autoDensity = true;
+    $('#game').html(app.view);
 });
